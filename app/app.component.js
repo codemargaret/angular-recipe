@@ -14,13 +14,20 @@ var AppComponent = (function () {
             new Recipe('Apple', ['Apple'], 'Eat the Apple'),
             new Recipe('Cereal', ['Cereal', 'Milk'], 'Pour milk over the cereal')
         ];
+        this.selectedRecipe = null;
     }
+    AppComponent.prototype.editRecipe = function (clickedRecipe) {
+        this.selectedRecipe = clickedRecipe;
+    };
+    AppComponent.prototype.finishedEditing = function () {
+        this.selectedRecipe = null;
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([
     core_1.Component({
         selector: 'app-root',
-        template: "\n    <div class=\"container\">\n      <h1>Recipe List</h1>\n      <div *ngFor='let currentRecipe of recipes'>\n        <h3>{{currentRecipe.title}}</h3>\n        <div *ngFor='let currentIngredient of currentRecipe.ingredients'>\n        <h4>{{currentIngredient}}</h4>\n        </div>\n        <h4>Instructions: {{currentRecipe.instructions}}</h4>\n      </div>\n    </div>\n  "
+        template: "\n    <div class=\"container\">\n      <h1>Recipe List</h1>\n      <div *ngFor='let currentRecipe of recipes'>\n        <h3>{{currentRecipe.title}} <button (click)=\"editRecipe(currentRecipe)\">Edit!</button></h3>\n\n        <div *ngFor='let currentIngredient of currentRecipe.ingredients'>\n          <h4>{{currentIngredient}}</h4>\n        </div>\n        <h4>Instructions: {{currentRecipe.instructions}}</h4>\n      </div>\n      <div *ngIf=\"selectedRecipe\">\n      <h3>Enter a new title</h3>\n        <input [(ngModel)]=\"selectedRecipe.title\">\n        <div *ngFor=\"let x of selectedRecipe.ingredients; let i = index\">\n          <input [(ngModel)]=\"selectedRecipe.ingredients[i]\">\n        </div>\n        <input [(ngModel)]=\"selectedRecipe.instructions\">\n        <button (click)=\"finishedEditing()\">Done</button>\n      </div>\n    </div>\n  "
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;

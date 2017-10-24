@@ -6,11 +6,21 @@ import { Component } from '@angular/core';
     <div class="container">
       <h1>Recipe List</h1>
       <div *ngFor='let currentRecipe of recipes'>
-        <h3>{{currentRecipe.title}}</h3>
+        <h3>{{currentRecipe.title}} <button (click)="editRecipe(currentRecipe)">Edit!</button></h3>
+
         <div *ngFor='let currentIngredient of currentRecipe.ingredients'>
-        <h4>{{currentIngredient}}</h4>
+          <h4>{{currentIngredient}}</h4>
         </div>
         <h4>Instructions: {{currentRecipe.instructions}}</h4>
+      </div>
+      <div *ngIf="selectedRecipe">
+      <h3>Enter a new title</h3>
+        <input [(ngModel)]="selectedRecipe.title">
+        <div *ngFor="let x of selectedRecipe.ingredients; let i = index">
+          <input [(ngModel)]="selectedRecipe.ingredients[i]">
+        </div>
+        <input [(ngModel)]="selectedRecipe.instructions">
+        <button (click)="finishedEditing()">Done</button>
       </div>
     </div>
   `
@@ -22,6 +32,15 @@ export class AppComponent {
     new Recipe('Apple', ['Apple'], 'Eat the Apple'),
     new Recipe('Cereal', ['Cereal', 'Milk'], 'Pour milk over the cereal')
   ];
+  selectedRecipe = null;
+
+  editRecipe(clickedRecipe) {
+    this.selectedRecipe = clickedRecipe;
+  }
+
+  finishedEditing() {
+    this.selectedRecipe = null;
+  }
 }
 
 export class Recipe {
