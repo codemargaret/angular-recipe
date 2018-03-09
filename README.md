@@ -2,7 +2,7 @@
 
 #### _An application to store recipes, 10.24.2017_
 
-#### By _**Margaret Berry**_
+#### By _**Margaret Berry and Dan Danilyuk**_
 
 ## Description
 _This application allows a user to create, edit, and delete recipes._
@@ -36,4 +36,4 @@ _If you have issues, questions, ideas, or concerns, please contact [Margaret](co
 ### License
 *This software is licensed under the MIT license.*
 
-Copyright (c) 2017 **_Margaret Berry, Dan Danilyuk_**
+Copyright (c) 2017 **_Margaret Berry and Dan Danilyuk_**
